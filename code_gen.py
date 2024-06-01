@@ -10,12 +10,13 @@ class CodeGen:
     type: str
 
     def __init__(self, data_stuct: str, type: str):
-        self.data_struct = self.sanitize(data_stuct, r'[^a-zA-Z0-9]')
-        self.type = self.sanitize(type, r'[^a-zA-Z0-9]\*')
+        self.data_struct = self.sanitize(data_stuct, r'[^a-zA-Z0-9_]')
+        self.type = self.sanitize(type, r'[^a-zA-Z0-9_]\*')
 
-    def sanitize(self, text: str, pattern: str):
+    @staticmethod
+    def sanitize(text: str, pattern: str):
         text = re.sub(pattern, '', text)
-        match = re.search(r'[a-zA-Z]', text)
+        match = re.search(r'[a-zA-Z_]', text)
         if match:
             start = match.start()
             return text[start:]
@@ -34,7 +35,7 @@ class CodeGen:
             header_buffer = re.sub('{type}_', _type, header_buffer)
             header_buffer = re.sub('{type}', self.type, header_buffer)
 
-        return (impl_buffer, header_buffer)
+        return impl_buffer, header_buffer
 
     def save_file(self, impl_buf: str, header_buf: str):
         if not os.path.exists(OUTPUT_PATH):
