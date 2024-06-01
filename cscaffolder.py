@@ -2,6 +2,9 @@ import sys
 from code_gen import CodeGen
 
 # TODO: Improve program internal documentation
+# TODO: Implement `All` function
+# TODO: Implement LinkedList
+
 def print_help():
     print('Bunch of help text!')
     sys.exit(1)

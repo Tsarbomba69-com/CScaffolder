@@ -19,9 +19,17 @@ typedef void (*Action)({type});
 
 typedef bool (*CompareFn)(const {type}, const {type});
 
-bool {type}_ArrayListAny({type}_ArrayList*, {type}, CompareFn);
+// Memory operations ------------------------------------------
+
+{type}* AllocateContext(size_t size);
+
+{type}* {type}_ReallocateContext({type}* oldptr, size_t oldptr_size, size_t size);
 
 void {type}_AllocateElementes({type}_ArrayList* list);
+
+// ------------------------------------------------------------
+
+bool {type}_ArrayListAny({type}_ArrayList*, {type}, CompareFn);
 
 {type}_ArrayList CreateArrayList(size_t capacity);
 // Creates an array list on the heap

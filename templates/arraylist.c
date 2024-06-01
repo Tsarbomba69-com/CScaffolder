@@ -1,16 +1,24 @@
 #include "{type}_arraylist.h"
 
-// WARNING: Implement your own allocator. Using `malloc` as default
+// WARNING: You can implement your own memory management API. Using libc API as default---------
+
 {type}* {type}_AllocateContext(size_t size)
 {
 	assert(size > 0);
 	return ({type}*)malloc(size);
 }
 
-// WARNING: If you implement your own allocator, you probably have to also implement your `free` function
 void {type}_FreeContext({type}* obj_ptr) {
 	free(obj_ptr);
 }
+
+{type}* ReallocateContext({type}* oldptr, size_t oldptr_size, size_t size)
+{
+	assert(size > oldptr_size);
+	return realloc(oldptr, oldptr_size, size);
+}
+
+// -----------------------------------------------------------------------------------------------
 
 {type}_ArrayList {type}_CreateArrayList(size_t capacity)
 {
@@ -23,7 +31,7 @@ void {type}_FreeContext({type}* obj_ptr) {
 {type}_ArrayList* {type}_AllocateArrayList(size_t capacity) {
 	{type}_ArrayList* list = {type}_AllocateContext(sizeof({type}_ArrayList));
 	if (list == NULL) {
-		fprintf(stderr, "ERROR: Could not allocate memory for array list");
+		fprintf(stderr, "ERROR: Could not allocate memory for \"{type}\" array list");
 		return NULL;
 	}
 	list->capacity = capacity;
@@ -56,7 +64,7 @@ void {type}_ArrayListPush({type}_ArrayList* list, {type} value)
 		size_t cap = list->capacity * 2;
 		{type}* elements = {type}_ReallocateContext(list->elements, list->size * sizeof({type}), cap * sizeof({type}));
 		if (elements == NULL) {
-			fprintf(stderr, "ERROR: Failed to resize array list\n");
+			fprintf(stderr, "ERROR: Failed to resize \"{type}\" array list\n");
 			return;
 		}
 		list->elements = elements;
@@ -68,7 +76,7 @@ void {type}_ArrayListPush({type}_ArrayList* list, {type} value)
 bool {type}_ArrayListAny({type}_ArrayList* list, {type} el, CompareFn predicate)
 {
 	for (size_t i = 0; i < list->size; i++) {
-		if (fn(list[i], el)) {
+		if (predicate(list[i], el)) {
 			return true;
 		}
 	}
