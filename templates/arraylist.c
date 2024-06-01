@@ -12,7 +12,7 @@ void {type}_FreeContext({type}* obj_ptr) {
 	free(obj_ptr);
 }
 
-{type}* ReallocateContext({type}* oldptr, size_t oldptr_size, size_t size)
+{type}* {type}_ReallocateContext({type}* oldptr, size_t oldptr_size, size_t size)
 {
 	assert(size > oldptr_size);
 	return realloc(oldptr, oldptr_size, size);

@@ -21,7 +21,7 @@ typedef bool (*CompareFn)(const {type}, const {type});
 
 // Memory operations ------------------------------------------
 
-{type}* AllocateContext(size_t size);
+{type}* {type}_AllocateContext(size_t size);
 
 {type}* {type}_ReallocateContext({type}* oldptr, size_t oldptr_size, size_t size);
 
