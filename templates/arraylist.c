@@ -76,7 +76,8 @@ void {type}_ArrayListPush({type}_ArrayList* list, {type} value)
 bool {type}_ArrayListAny({type}_ArrayList* list, {type} el, CompareFn predicate)
 {
 	for (size_t i = 0; i < list->size; i++) {
-		if (predicate(list[i], el)) {
+	    {type} curr = {type}_ArrayListGet(list, i);
+		if (predicate(curr, el)) {
 			return true;
 		}
 	}

@@ -1,5 +1,6 @@
 #pragma once
 #include <stdio.h>
+#include <assert.h>
 #include <stdbool.h>
 
 #ifndef {type}_ARRAYLIST_H
