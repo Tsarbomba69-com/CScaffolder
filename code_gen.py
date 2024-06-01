@@ -3,13 +3,25 @@ import os
 
 TEMPLATE_PATH = './templates'
 OUTPUT_PATH = './output'
+
+
 class CodeGen:
     data_struct: str
     type: str
 
     def __init__(self, data_stuct, type):
-        self.data_struct =  re.sub(r'[^a-zA-Z0-9]', '', data_stuct)
-        self.type = re.sub(r'[^a-zA-Z0-9]', '', type)
+        self.data_struct = self.sanitize(data_stuct)
+        self.type = self.sanitize(type)
+
+    def sanitize(self, text: str):
+        pattern = r'[^a-zA-Z0-9]'
+        text = re.sub(pattern, '', text)
+        match = re.search(r'[a-zA-Z]', text)
+        if match:
+            start = match.start()
+            return text[start:]
+        else:
+            return text
 
     def generate_code(self):
         with open(f"{TEMPLATE_PATH}/{self.data_struct}.c", "r") as impl_file:  # TODO: Error handling
