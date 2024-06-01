@@ -32,9 +32,9 @@ void {type}_AllocateElementes({type}_ArrayList* list);
 
 bool {type}_ArrayListAny({type}_ArrayList*, {type}, CompareFn);
 
-{type}_ArrayList CreateArrayList(size_t capacity);
+{type}_ArrayList {type}_CreateArrayList(size_t capacity);
 // Creates an array list on the heap
-{type}_ArrayList* AllocateArrayList(size_t capacity);
+{type}_ArrayList* {type}_AllocateArrayList(size_t capacity);
 // Pushes an element to the end of the array list
 void {type}_ArrayListPush({type}_ArrayList* list, {type} value);
 // Get the last element and remove it
