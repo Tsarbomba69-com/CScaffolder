@@ -48,7 +48,7 @@ void {type}_AllocateElementes({type}_ArrayList* list)
 	list->size = 0;
 }
 
-{type} {type}_ArrayListPop({type}_ArrayList* list) {
+{type} {type}_Pop({type}_ArrayList* list) {
 	if (list->size == 0) {
 		return NULL; // ArrayList is empty, return NULL
 	}
@@ -58,7 +58,7 @@ void {type}_AllocateElementes({type}_ArrayList* list)
 	return element; // Return the last element
 }
 
-void {type}_ArrayListPush({type}_ArrayList* list, {type} value)
+void {type}_Push({type}_ArrayList* list, {type} value)
 {
 	if (list->size == list->capacity) {
 		size_t cap = list->capacity * 2;
@@ -73,10 +73,10 @@ void {type}_ArrayListPush({type}_ArrayList* list, {type} value)
 	list->elements[list->size++] = value;
 }
 
-bool {type}_ArrayListAny({type}_ArrayList* list, {type} el, {type}_CompareFn predicate)
+bool {type}_Any({type}_ArrayList* list, {type} el, {type}_CompareFn predicate)
 {
 	for (size_t i = 0; i < list->size; i++) {
-	    {type} curr = {type}_ArrayListGet(list, i);
+	    {type} curr = {type}_Get(list, i);
 		if (predicate(curr, el)) {
 			return true;
 		}
@@ -84,7 +84,7 @@ bool {type}_ArrayListAny({type}_ArrayList* list, {type} el, {type}_CompareFn pre
 	return false;
 }
 
-void {type}_ArrayListForEach({type}_ArrayList* list, {type}_Action callback)
+void {type}_ForEach({type}_ArrayList* list, {type}_Action callback)
 {
 	for (size_t i = 0; i < list->size; i++)
 	{

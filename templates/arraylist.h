@@ -1,5 +1,6 @@
 #pragma once
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
 
@@ -30,7 +31,7 @@ typedef bool (*{type}_CompareFn)(const {type}, const {type});
 // ------------------------------------------------------------
 
 // Find any element within the array list that satisfy the predicate
-bool {type}_ArrayListAny({type}_ArrayList*, {type}, {type}_CompareFn);
+bool {type}_Any({type}_ArrayList*, {type}, {type}_CompareFn);
 // Stack allocated array list constructor
 {type}_ArrayList {type}_CreateArrayList(size_t capacity);
 // Heap allocated array list constructor
@@ -38,14 +39,14 @@ bool {type}_ArrayListAny({type}_ArrayList*, {type}, {type}_CompareFn);
 // Heap allocate the dynamic array within the array list struct
 void {type}_AllocateElementes({type}_ArrayList* list);
 // Pushes an element to the end of the array list
-void {type}_ArrayListPush({type}_ArrayList* list, {type} value);
+void {type}_Push({type}_ArrayList* list, {type} value);
 // Get the last element and remove it
-{type} {type}_ArrayListPop({type}_ArrayList* list);
+{type} {type}_Pop({type}_ArrayList* list);
 // Get the element stored at the index. Returns NULL if index is out-of-bounds
-inline {type} {type}_ArrayListGet({type}_ArrayList* arrayList, size_t index)
+inline {type} {type}_Get({type}_ArrayList* arrayList, size_t index)
 {
 	return index < arrayList->size ? arrayList->elements[index] : NULL;
 }
 // Iterate the array list and apply the callback for each element
-void {type}_ArrayListForEach({type}_ArrayList* list, {type}_Action callback);
+void {type}_ForEach({type}_ArrayList* list, {type}_Action callback);
 #endif // !{type}_ARRAYLIST_H
