@@ -41,7 +41,7 @@ void {type}_FreeContext({type}* obj_ptr) {
 
 void {type}_AllocateElementes({type}_ArrayList* list)
 {
-	list->elements = {type}_AllocateContext(list->capacity * sizeof(void*));
+	list->elements = {type}_AllocateContext(list->capacity * sizeof({type}));
 	if (list->elements == NULL) {
 		fprintf(stderr, "ERROR: Could not allocate memory for \"{type}\" array list elements");
 	}
@@ -73,7 +73,7 @@ void {type}_ArrayListPush({type}_ArrayList* list, {type} value)
 	list->elements[list->size++] = value;
 }
 
-bool {type}_ArrayListAny({type}_ArrayList* list, {type} el, CompareFn predicate)
+bool {type}_ArrayListAny({type}_ArrayList* list, {type} el, {type}_CompareFn predicate)
 {
 	for (size_t i = 0; i < list->size; i++) {
 	    {type} curr = {type}_ArrayListGet(list, i);
@@ -84,7 +84,7 @@ bool {type}_ArrayListAny({type}_ArrayList* list, {type} el, CompareFn predicate)
 	return false;
 }
 
-void {type}_ArrayListForEach({type}_ArrayList* list, Action callback)
+void {type}_ArrayListForEach({type}_ArrayList* list, {type}_Action callback)
 {
 	for (size_t i = 0; i < list->size; i++)
 	{

@@ -16,25 +16,27 @@ typedef struct {
 	size_t capacity;
 } {type}_ArrayList;
 
-typedef void (*Action)({type});
+typedef void (*{type}_Action)({type});
 
-typedef bool (*CompareFn)(const {type}, const {type});
+typedef bool (*{type}_CompareFn)(const {type}, const {type});
 
 // Memory operations ------------------------------------------
 
+// Custom defined memory allocation function
 {type}* {type}_AllocateContext(size_t size);
-
+// Custom defined memory reallocation function
 {type}* {type}_ReallocateContext({type}* oldptr, size_t oldptr_size, size_t size);
-
-void {type}_AllocateElementes({type}_ArrayList* list);
 
 // ------------------------------------------------------------
 
-bool {type}_ArrayListAny({type}_ArrayList*, {type}, CompareFn);
-
+// Find any element within the array list that satisfy the predicate
+bool {type}_ArrayListAny({type}_ArrayList*, {type}, {type}_CompareFn);
+// Stack allocated array list constructor
 {type}_ArrayList {type}_CreateArrayList(size_t capacity);
-// Creates an array list on the heap
+// Heap allocated array list constructor
 {type}_ArrayList* {type}_AllocateArrayList(size_t capacity);
+// Heap allocate the dynamic array within the array list struct
+void {type}_AllocateElementes({type}_ArrayList* list);
 // Pushes an element to the end of the array list
 void {type}_ArrayListPush({type}_ArrayList* list, {type} value);
 // Get the last element and remove it
@@ -45,5 +47,5 @@ inline {type} {type}_ArrayListGet({type}_ArrayList* arrayList, size_t index)
 	return index < arrayList->size ? arrayList->elements[index] : NULL;
 }
 // Iterate the array list and apply the callback for each element
-void {type}_ArrayListForEach({type}_ArrayList* list, Action callback);
+void {type}_ArrayListForEach({type}_ArrayList* list, {type}_Action callback);
 #endif // !{type}_ARRAYLIST_H
