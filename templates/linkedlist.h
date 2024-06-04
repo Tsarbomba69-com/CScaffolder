@@ -19,7 +19,7 @@ typedef struct {type}_Node {
     struct {type}_Node* next;
 } {type}_Node;
 
-typedef struct {
+typedef struct {type}_LinkedList {
     {type}_Node* head;
     size_t size;
 } {type}_LinkedList;

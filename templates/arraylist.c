@@ -73,7 +73,7 @@ void {type}_Push({type}_ArrayList* list, {type} value)
 	list->elements[list->size++] = value;
 }
 
-bool {type}_Any({type}_ArrayList* list, {type} el, {type}_CompareFn predicate)
+bool {type}_Any({type}_ArrayList const *list, {type} const el, {type}_CompareFn predicate)
 {
 	for (size_t i = 0; i < list->size; i++) {
 	    {type} curr = {type}_Get(list, i);
@@ -84,7 +84,7 @@ bool {type}_Any({type}_ArrayList* list, {type} el, {type}_CompareFn predicate)
 	return false;
 }
 
-void {type}_ForEach({type}_ArrayList* list, {type}_Action callback)
+void {type}_ForEach({type}_ArrayList const *list, {type}_Action callback)
 {
 	for (size_t i = 0; i < list->size; i++)
 	{

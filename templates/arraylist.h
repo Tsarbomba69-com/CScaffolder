@@ -11,7 +11,7 @@
 #define ARRAYSIZE(a) (sizeof(a)/sizeof((a)[0]))
 #endif  // !ARRAYSIZE(a)
 
-typedef struct {
+typedef struct {type}_ArrayList {
 	{type}* elements;
 	size_t size;
 	size_t capacity;
@@ -31,7 +31,7 @@ typedef bool (*{type}_CompareFn)(const {type}, const {type});
 // ------------------------------------------------------------
 
 // Find any element within the array list that satisfy the predicate
-bool {type}_Any({type}_ArrayList*, {type}, {type}_CompareFn);
+bool {type}_Any({type}_ArrayList const*, {type} const, {type}_CompareFn);
 // Stack allocated array list constructor
 {type}_ArrayList {type}_CreateArrayList(size_t capacity);
 // Heap allocated array list constructor
@@ -48,5 +48,5 @@ static inline {type} {type}_Get({type}_ArrayList const* arrayList, size_t index)
 	return index < arrayList->size ? arrayList->elements[index] : NULL;
 }
 // Iterate the array list and apply the callback for each element
-void {type}_ForEach({type}_ArrayList* list, {type}_Action callback);
+void {type}_ForEach({type}_ArrayList const *list, {type}_Action callback);
 #endif // !{type}_ARRAYLIST_H
