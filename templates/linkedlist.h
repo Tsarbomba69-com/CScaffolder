@@ -26,14 +26,23 @@ typedef struct {
 
 // Stack allocated linkedlist constructor
 {type}_LinkedList {type}_CreateLinkedList();
+
 // Heap allocated linkedlist constructor
 {type}_LinkedList* {type}_AllocateLinkedList();
+
 // Heap allocated node constructor
 {type}_Node* {type}_CreateNode({type} data);
+
 // Adds an element at the beginning of the list
 void {type}_AddFirst({type}_LinkedList* list, {type} data);
+
+// Adds an element at the end of the list
+void {type}_AddLast({type}_LinkedList *list, {type} *data);
+
 // Traverse linked list
 void {type}_ForEach({type}_LinkedList* list,  {type}_Action callback);
+
 // Get the last element and remove it
 {type} {type}_Pop({type}_LinkedList* list);
+
 #endif // !{type}_LINKEDLIST_H

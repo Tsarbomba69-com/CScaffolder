@@ -36,6 +36,23 @@ void {type}_AddFirst({type}_LinkedList* list, {type} data) {
     list->size++;
 }
 
+void {type}_AddLast({type}_LinkedList *list, {type} *data) {
+    {type}_Node *newNode = {type}_CreateNode(data);
+
+    if (list->head == NULL) {
+        list->head = newNode;
+        return;
+    }
+
+    {type}_Node *temp = list->head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+
+    temp->next = newNode;
+    list->size++;
+}
+
 {type} {type}_Pop({type}_LinkedList* list) {
     if (list->head == NULL) {
         return NULL;
