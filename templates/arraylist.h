@@ -7,7 +7,7 @@
 #ifndef {type}_ARRAYLIST_H
 #define {type}_ARRAYLIST_H
 
-#ifndef ARRAYSIZE(a)
+#ifndef ARRAYSIZE
 #define ARRAYSIZE(a) (sizeof(a)/sizeof((a)[0]))
 #endif  // !ARRAYSIZE(a)
 
@@ -43,7 +43,7 @@ void {type}_Push({type}_ArrayList* list, {type} value);
 // Get the last element and remove it
 {type} {type}_Pop({type}_ArrayList* list);
 // Get the element stored at the index. Returns NULL if index is out-of-bounds
-inline {type} {type}_Get({type}_ArrayList* arrayList, size_t index)
+static inline {type} {type}_Get({type}_ArrayList const* arrayList, size_t index)
 {
 	return index < arrayList->size ? arrayList->elements[index] : NULL;
 }

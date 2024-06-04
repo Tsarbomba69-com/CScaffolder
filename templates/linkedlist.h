@@ -4,6 +4,8 @@
 #include <assert.h>
 #include <stdbool.h>
 
+typedef struct {type}_Node {type}_Node;
+
 #ifndef {type}_LINKEDLIST_H
 #define {type}_LINKEDLIST_H
 
@@ -12,7 +14,7 @@ typedef void (*{type}_Action)({type});
 typedef bool (*{type}_CompareFn)(const {type}, const {type});
 
 // node structure
-typedef struct {
+typedef struct {type}_Node {
     {type} data;
     struct {type}_Node* next;
 } {type}_Node;
