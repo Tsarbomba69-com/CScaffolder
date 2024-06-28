@@ -13,4 +13,5 @@ To use the C code generator, follow these steps:
 
 1. Clone the repository to your local machine: [https://github.com/Tsarbomba69-com/CScaffolder.git](https://github.com/Tsarbomba69-com/CScaffolder.git)
 2. Usage: ``` $ python cscaffolder.py gen <data-struct> <type> ```
+   1. To generate hashtable: ``` $ python cscaffolder.py gen hashtable <value-type> <key-type> ```
 3. Files will be saved on output folder: \<type\>\_\<data-struct\>.h, \<type\>\_\<data-struct\>.c 
