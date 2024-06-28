@@ -64,7 +64,7 @@ if __name__ == "__main__":
                 print_usage()
             arg1 = sys.argv[2]
             arg2 = sys.argv[3]
-            arg3 = get(sys.argv, 4)
+            arg3 = get(sys.argv, 4, '')
             if arg3 is None and arg1 == 'hashtable':
                 print("[ERROR]: Hashtable requires 2 arguments")
                 print("Usage: python cscaffolder.py gen hashtable <value-type> <key-type>")
